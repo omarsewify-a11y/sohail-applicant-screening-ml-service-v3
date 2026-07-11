@@ -22,3 +22,5 @@ curl http://localhost:8000/health
 Then open `http://localhost:8000/results` for the dashboard or `http://localhost:8000/docs` for interactive API docs. Full details in [`api/API_README.md`](api/API_README.md), [`data_training/MODEL_CARD.md`](data_training/MODEL_CARD.md), and [`monitoring/MONITORING_GUIDE.md`](monitoring/MONITORING_GUIDE.md).
 
 **Known handover item:** `data_training/requirements.txt` and `api/requirements.txt` currently pin different scikit-learn versions (`1.7.0` vs `1.6.1`) because the frozen model was pickled under `1.6.1`. See the coordination notes at the bottom of `api/API_README.md`.
+
+

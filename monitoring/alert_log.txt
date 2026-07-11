@@ -1,1 +1,1 @@
-No alerts generated. System is operating normally.
+WARNING: Shortlist rate dropped below 10%. Action: Check model and data quality.
