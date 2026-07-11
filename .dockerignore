@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+api/test_predictions_log.csv
+screenshots/
+.git/
+.venv/
+*.md

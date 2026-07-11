@@ -1,0 +1,26 @@
+
+=====================================
+Applicant Screening Monitoring Report
+=====================================
+
+Generated Time:
+2026-07-11 00:14:01.798450
+
+Total Predictions:
+11
+
+Shortlisted Applicants:
+5
+
+Review Later Applicants:
+6
+
+Average Confidence:
+85.64%
+
+Shortlist Rate:
+45.45%
+
+Business Interpretation:
+Model performance appears stable. No immediate action is required.
+
