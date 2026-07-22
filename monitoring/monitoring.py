@@ -1,19 +1,42 @@
+import os
 import pandas as pd
 from datetime import datetime
 
-
-# ==============================
+# =====================================
 # Load Prediction Log
-# ==============================
+# =====================================
 
 LOG_FILE = "predictions_log.csv"
 
-df = pd.read_csv(LOG_FILE)
+# Check if file exists
+if not os.path.exists(LOG_FILE):
+    print("ERROR: Prediction log file not found.")
+    exit()
 
+# Read CSV safely
+try:
+    df = pd.read_csv(LOG_FILE)
+except Exception as e:
+    print("ERROR: Unable to read prediction log.")
+    print(e)
+    exit()
 
-# ==============================
+# Check if log is empty
+if df.empty:
+    print("WARNING: Prediction log is empty.")
+    exit()
+
+# Check required columns
+required_columns = ["prediction", "confidence"]
+
+for column in required_columns:
+    if column not in df.columns:
+        print(f"ERROR: Missing required column: {column}")
+        exit()
+
+# =====================================
 # Calculate Monitoring Metrics
-# ==============================
+# =====================================
 
 total_predictions = len(df)
 
@@ -25,50 +48,45 @@ average_confidence = df["confidence"].mean()
 
 shortlist_rate = (shortlisted / total_predictions) * 100
 
-
-# ==============================
+# =====================================
 # Business Interpretation
-# ==============================
+# =====================================
 
-if average_confidence < 0.75:
+if average_confidence < 0.70:
+
     interpretation = (
-        "Model confidence is low. "
-        "The team should review recent applicant data "
-        "and evaluate model performance."
+        "Model confidence is critically low. "
+        "Immediate investigation is recommended."
     )
 
-elif shortlist_rate > 90:
-    interpretation = (
-        "Shortlist rate is unusually high. "
-        "The team should check incoming applicant data "
-        "for possible changes."
-    )
+elif average_confidence < 0.85:
 
-elif shortlist_rate < 10:
     interpretation = (
-        "Shortlist rate is unusually low. "
-        "The team should inspect model behavior "
-        "and data quality."
+        "Model confidence is slightly below the desired level. "
+        "Continue monitoring and consider reviewing recent prediction data."
     )
 
 else:
+
     interpretation = (
-        "Model performance appears stable. "
-        "No immediate action is required."
+        "Model confidence is healthy and predictions appear stable."
     )
 
-
-# ==============================
+# =====================================
 # Generate Monitoring Report
-# ==============================
+# =====================================
 
 report = f"""
-=====================================
+==========================================
 Applicant Screening Monitoring Report
-=====================================
+==========================================
 
 Generated Time:
 {datetime.now()}
+
+------------------------------------------
+Prediction Statistics
+------------------------------------------
 
 Total Predictions:
 {total_predictions}
@@ -85,64 +103,93 @@ Average Confidence:
 Shortlist Rate:
 {shortlist_rate:.2f}%
 
-Business Interpretation:
+------------------------------------------
+Business Interpretation
+------------------------------------------
+
 {interpretation}
 
-"""
+------------------------------------------
+Recommended Actions
+------------------------------------------
 
+• Review monitoring reports daily.
+• Investigate repeated WARNING or CRITICAL alerts.
+• Retrain the model if confidence continues to decrease.
+• Ensure prediction logs are generated correctly.
+
+"""
 
 with open("monitoring_report.txt", "w") as file:
     file.write(report)
 
-
-# ==============================
+# =====================================
 # Alert System
-# ==============================
+# =====================================
 
 alerts = []
 
+# Confidence alerts
+if average_confidence >= 0.85:
 
-# Low confidence alert
-if average_confidence < 0.75:
     alerts.append(
-        "WARNING: Average confidence dropped below 75%. "
-        "Action: Review model performance."
+        "INFO: Model confidence is healthy."
     )
 
+elif average_confidence >= 0.70:
 
-# High shortlist rate alert
+    alerts.append(
+        "WARNING: Model confidence is below the desired level."
+    )
+
+else:
+
+    alerts.append(
+        "CRITICAL: Model confidence is very low. Immediate review required."
+    )
+
+# Shortlist rate alerts
 if shortlist_rate > 90:
+
     alerts.append(
-        "WARNING: Shortlist rate exceeded 90%. "
-        "Action: Check incoming applicant data."
+        "WARNING: More than 90% of applicants are being shortlisted."
     )
 
+elif shortlist_rate < 10:
 
-# Low shortlist rate alert
-if shortlist_rate < 10:
     alerts.append(
-        "WARNING: Shortlist rate dropped below 10%. "
-        "Action: Check model and data quality."
+        "WARNING: Less than 10% of applicants are being shortlisted."
     )
 
+else:
 
-if len(alerts) == 0:
     alerts.append(
-        "No alerts generated. System is operating normally."
+        "INFO: Shortlist rate is within the expected range."
     )
 
+# =====================================
+# Save Alerts
+# =====================================
 
 with open("alert_log.txt", "w") as file:
+
+    file.write("Applicant Screening Alert Log\n")
+    file.write(f"Generated: {datetime.now()}\n\n")
+
     for alert in alerts:
         file.write(alert + "\n")
 
-
-# ==============================
+# =====================================
 # Display Results
-# ==============================
+# =====================================
 
 print(report)
 
-print("Alerts:")
+print("===================================")
+print("Alerts")
+print("===================================")
+
 for alert in alerts:
     print(alert)
+
+print("\nMonitoring completed successfully.")
