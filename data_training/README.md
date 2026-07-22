@@ -81,7 +81,6 @@ Additional documentation includes:
 - MODEL_CARD.md
 - MODEL_QUALITY.md
 - DATA_SCHEMA.md
-- INTEGRATION.md
 - HANDOVER.md
 
 ## Internship
