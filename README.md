@@ -16,10 +16,10 @@ repo/
 ```bash
 docker build -t applicant-screening-api .
 docker run -p 8000:8000 -v $(pwd)/monitoring:/app/monitoring applicant-screening-api
-curl http://localhost:8000/health
+curl https://sohail-applicant-screening-api.onrender.com/health
 ```
 
-Then open `http://localhost:8000/results` for the dashboard or `http://localhost:8000/docs` for interactive API docs. Full details in [`api/API_README.md`](api/API_README.md), [`data_training/MODEL_CARD.md`](data_training/MODEL_CARD.md), and [`monitoring/MONITORING_GUIDE.md`](monitoring/MONITORING_GUIDE.md).
+Then open `https://sohail-applicant-screening-api.onrender.com/results` for the dashboard or `https://sohail-applicant-screening-api.onrender.com/docs` for interactive API docs. Full details in [`api/API_README.md`](api/API_README.md), [`data_training/MODEL_CARD.md`](data_training/MODEL_CARD.md), and [`monitoring/MONITORING_GUIDE.md`](monitoring/MONITORING_GUIDE.md).
 
 **Known handover item:** `data_training/requirements.txt` and `api/requirements.txt` currently pin different scikit-learn versions (`1.7.0` vs `1.6.1`) because the frozen model was pickled under `1.6.1`. See the coordination notes at the bottom of `api/API_README.md`.
 
