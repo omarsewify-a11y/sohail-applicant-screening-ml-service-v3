@@ -1,0 +1,42 @@
+
+==========================================
+Applicant Screening Monitoring Report
+==========================================
+
+Generated Time:
+2026-07-22 12:40:45.199258
+
+------------------------------------------
+Prediction Statistics
+------------------------------------------
+
+Total Predictions:
+11
+
+Shortlisted Applicants:
+5
+
+Review Later Applicants:
+6
+
+Average Confidence:
+85.64%
+
+Shortlist Rate:
+45.45%
+
+------------------------------------------
+Business Interpretation
+------------------------------------------
+
+Model confidence is healthy and predictions appear stable.
+
+------------------------------------------
+Recommended Actions
+------------------------------------------
+
+• Review monitoring reports daily.
+• Investigate repeated WARNING or CRITICAL alerts.
+• Retrain the model if confidence continues to decrease.
+• Ensure prediction logs are generated correctly.
+
