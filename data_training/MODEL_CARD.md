@@ -2,89 +2,67 @@
 
 ## Model Name
 
-Applicant Screening Model Version 3
-
----
+Applicant Screening Model
 
 ## Purpose
 
-This machine learning model predicts whether an internship applicant should be shortlisted or marked for further review based on several applicant attributes.
+Predict whether an internship applicant should be shortlisted or reviewed later.
 
----
+## Model Type
+
+Logistic Regression
 
 ## Dataset
 
-Synthetic internship applicant dataset.
-
-80 applicant records.
-
----
-
-## Features
+Synthetic applicant dataset including:
 
 - GPA
 - Skills Count
 - Prior Projects
 - Track
-- Experience Score
-- High GPA Indicator
 
----
+## Features
+
+| Feature | Type |
+|----------|------|
+| GPA | Numeric |
+| Skills Count | Numeric |
+| Prior Projects | Numeric |
+| Track | Categorical |
 
 ## Target
 
-shortlisted
+Shortlisted
 
-- 1 = Shortlisted
+- 1 = Shortlist
 - 0 = Review Later
 
----
+## Training
 
-## Model
+The model was trained using a Scikit-learn Pipeline with preprocessing and Logistic Regression.
 
-- Logistic Regression
-- Scikit-learn Pipeline
-
----
-
-## Preprocessing
-
-The Pipeline automatically performs:
-
-- One-Hot Encoding for Track
-- Numeric feature passthrough
-
-No manual preprocessing is required during prediction.
-
----
-
-## Validation
-
-5-Fold Cross Validation
-
-Random State:
-
-```python
-42
-```
-
----
+Cross-validation was performed using five folds.
 
 ## Performance
 
-The model achieved a strong average cross-validation accuracy during testing.
-
----
+The model achieved consistent performance across cross-validation with stable accuracy.
 
 ## Limitations
 
-- Uses synthetic internship data.
-- Small dataset.
-- Should not be used for real hiring decisions.
-- Additional real-world applicant features would improve performance.
+- Uses synthetic data.
+- Limited feature set.
+- Cannot replace human hiring decisions.
+- Performance depends on data quality.
 
----
+## Intended Use
 
-## Version
+Educational demonstration of a complete machine learning workflow for applicant screening.
 
-Version 3 (Final Handover Version)
+## Maintenance
+
+Future improvements should include:
+
+- More real-world data
+- Additional applicant features
+- Regular retraining
+- Continuous monitoring
