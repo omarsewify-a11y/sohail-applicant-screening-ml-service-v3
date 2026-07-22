@@ -2,46 +2,48 @@
 
 ## System Status
 
-The monitoring system is running successfully.
+The Applicant Screening ML Service is operating normally and production monitoring is active.
 
 ---
 
 ## Health Summary
 
-- Prediction logging is active.
-- Monitoring completed successfully.
-- Alerts are working correctly.
+Monitoring continuously evaluates production prediction logs.
+
+Current monitoring checks:
+
+- Prediction volume
+- Average confidence
+- Shortlist rate
+- Alert generation
 
 ---
 
-## Business Interpretation
-
-The monitoring system continuously checks prediction quality.
-
-If confidence decreases or shortlist rates become unusual, management should investigate whether the model needs retraining or whether applicant data has changed.
-
----
-
-## Alert Levels
+## Alert Priority Levels
 
 ### INFO
 
-Normal system behaviour.
+Normal operation.
+
+No action required.
 
 ### WARNING
 
-Possible issue detected.
+Potential issue detected.
+
 Technical review recommended.
 
 ### CRITICAL
 
-Immediate investigation required.
+High-priority issue.
+
+Immediate investigation is recommended.
 
 ---
 
 ## Recommended Actions
 
-- Review reports daily.
-- Investigate repeated warnings.
-- Retrain the model if confidence remains low.
-- Ensure prediction logs continue to be generated.
+- Review monitoring reports every day.
+- Investigate repeated warning or critical alerts.
+- Retrain the model if confidence decreases over time.
+- Ensure prediction logs continue to be generated correctly.
