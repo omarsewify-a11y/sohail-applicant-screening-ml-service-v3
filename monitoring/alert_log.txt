@@ -1,0 +1,5 @@
+Applicant Screening Alert Log
+Generated: 2026-07-22 12:40:45.199530
+
+INFO: Model confidence is healthy.
+INFO: Shortlist rate is within the expected range.
